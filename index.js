@@ -110,7 +110,7 @@ const View = (() => {
       <li>
         <span class="name">${item.content}</span>
         <button class="decrease">-</button>
-        <span class="amount">${item.amount || 0}</span>
+        <span class="amount">${item.amount}</span>
         <button class="increase">+</button>
         <button class="add-to-cart">add to cart</button>
       </li>
@@ -121,8 +121,11 @@ const View = (() => {
   const renderCart = (cart, handleDelete) => {
     cartList.innerHTML = cart.map(item => `
       <li>
+        
         <span class="name">${item.content} x ${item.amount}</span>
+        <div class = "divdelete">
         <button class="delete">delete</button>
+        </div>
       </li>
     `).join('');
 
@@ -187,7 +190,7 @@ const Controller = ((model, view) => {
     const itemIndex = inventory.findIndex(item => item.content === itemContent);
     if (itemIndex !== -1) {
       // console.log(change)
-      inventory[itemIndex].amount = Math.max(0, (inventory[itemIndex].amount || 0) + change);
+      inventory[itemIndex].amount = Math.max(0, (inventory[itemIndex].amount) + change);
       state.inventory = inventory;
     }
   };
@@ -209,7 +212,6 @@ const Controller = ((model, view) => {
             state.cart = cart;
           });
       }
-      // handleUpdateAmount(itemContent, -item.amount);
     }
   };
 
