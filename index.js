@@ -103,16 +103,16 @@ const Model = (() => {
 })();
 
 const View = (() => {
-  const inventoryList = document.querySelector('.inventory-container ul');
-  const cartList = document.querySelector('.cart-container ul');
+  const inventoryList = document.querySelector('.inventory__list');
+  const cartList = document.querySelector('.cart__list');
   const renderInventory = (inventory, handleUpdateAmount, handleAddToCart) => {
     inventoryList.innerHTML = inventory.map(item => `
       <li>
-        <span class="name">${item.content}</span>
-        <button class="decrease">-</button>
-        <span class="amount">${item.amount}</span>
-        <button class="increase">+</button>
-        <button class="add-to-cart">add to cart</button>
+        <span class="inventory__name">${item.content}</span>
+        <button class="inventory__decrease">-</button>
+        <span class="inventory__amount">${item.amount}</span>
+        <button class="inventory__increase">+</button>
+        <button class="inventory__add-to-cart">add to cart</button>
       </li>
     `).join('');
 
@@ -121,10 +121,9 @@ const View = (() => {
   const renderCart = (cart, handleDelete) => {
     cartList.innerHTML = cart.map(item => `
       <li>
-        
-        <span class="name">${item.content} x ${item.amount}</span>
-        <div class = "divdelete">
-        <button class="delete">delete</button>
+        <span class="cart__name">${item.content} x ${item.amount}</span>
+        <div class="cart__div-delete">
+          <button class="cart__delete">delete</button>
         </div>
       </li>
     `).join('');
@@ -151,13 +150,13 @@ const Controller = ((model, view) => {
       
       const itemContent = li.querySelector('span').textContent;
       
-      if (e.target.classList.contains('decrease')) {
+      if (e.target.classList.contains('inventory__decrease')) {
         // console.log('decrase')
         handleUpdateAmount(itemContent, -1);
-      } else if (e.target.classList.contains('increase')) {
+      } else if (e.target.classList.contains('inventory__increase')) {
         // console.log('increase')
         handleUpdateAmount(itemContent, 1);
-      } else if (e.target.classList.contains('add-to-cart')) {
+      } else if (e.target.classList.contains('inventory__add-to-cart')) {
         // console.log('add to cart')
         handleAddToCart(itemContent);
       }
@@ -165,7 +164,7 @@ const Controller = ((model, view) => {
 
 
     view.cartList.addEventListener('click', (e) => {
-      if (e.target.classList.contains('delete')) {
+      if (e.target.classList.contains('cart__delete')) {
         const li = e.target.closest('li');
         if (!li) return;
         
@@ -238,7 +237,7 @@ const Controller = ((model, view) => {
       view.renderCart(state.cart, handleDelete);
     });
     init();
-    document.querySelector('.checkout-btn').addEventListener('click', handleCheckout);
+    document.querySelector('.cart__checkout-btn').addEventListener('click', handleCheckout);
    };
   return {
     bootstrap,

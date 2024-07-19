@@ -17,7 +17,7 @@ body {
     min-height: 400px;
 }
 
-.inventory-container, .cart-container {
+.inventory, .cart {
     flex: 1;
     padding: 0 20px;
 }
@@ -42,16 +42,16 @@ li {
     justify-content: space-between;
 }
 
-.inventory-container li{
+.inventory__list li {
     display: flex;
 }
 
-.inventory-container .name{
+.inventory__name {
     flex: content;
     text-align: center;
 }
 
-.amount {
+.inventory__amount, .cart__amount {
     width: 20%;
     text-align: center;
 }
@@ -69,56 +69,50 @@ button {
     margin: 0 5px;
 }
 
-button.decrease {
+button.inventory__decrease {
     background-color: #b14a4c;
-    position:static;
+    position: static;
 }
 
-button.increase{
+button.inventory__increase {
     background-color: #76ae50;
-    position:static;
+    position: static;
 }
 
-
-button.delete, button.add-to-cart {
+button.cart__delete, button.inventory__add-to-cart {
+    margin-left: 5%;
     background-color: #3b6da5;
 }
 
-button.delete{
-    /* position: relative; */
-    right: 0;
-}
-
-.cart-wrapper ul li span{
+.cart__wrapper ul li span {
     text-align: right;
 }
 
-.cart-wrapper ul li {
+.cart__wrapper ul li {
     display: flex;
 }
 
-div.divdelete {
-    /* float:left; */
+.cart__div-delete {
     display: flex;
-   width: 50%;
+    width: 50%;
 }
 
-.cart-wrapper .name{
+.cart__name {
     width: 50%;
     align-items: left;
     justify-content: left;
 }
 
-.amount {
+.cart__amount {
     margin: 0 10px;
 }
 
-.cart-wrapper {
+.cart__wrapper {
     position: relative;
     min-height: 300px;
 }
 
-.checkout-btn {
+.cart__checkout-btn {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -127,4 +121,37 @@ div.divdelete {
     padding: 10px 20px;
     font-size: 16px;
     width: 100%;
+}
+
+@media (max-width: 599px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .inventory__amount, .cart__amount {
+        width: 100%;
+    }
+
+    .cart__name {
+        width: 100%;
+    }
+
+    .cart__div-delete {
+        width: 100%;
+    }
+
+    .cart__checkout-btn {
+        position: relative;
+        width: auto;
+    }
 }
